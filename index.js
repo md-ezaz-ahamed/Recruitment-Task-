@@ -4,14 +4,15 @@ let nextItemId = 1;
 function addToCart(itemName, itemPrice) {
     const buttonId = `${itemName.toLowerCase().replace(/\s/g, '')}Button`;
 
-    // Check if the item is already in the cart
+   
     const existingItem = cart.find(item => item.name === itemName);
 
     if (existingItem) {
-        // If the item already exists, increase its quantity
+       
         existingItem.quantity++;
-    } else {
-        // If the item is not in the cart, add it with quantity 1
+    } 
+    else {
+     
         const newItem = { id: nextItemId, name: itemName, price: itemPrice, quantity: 1 };
         cart.push(newItem);
         nextItemId++;
@@ -45,7 +46,7 @@ function updateCart() {
         const listItem = document.createElement('li');
         listItem.textContent = `${item.name} - $${item.price} x ${item.quantity}`;
 
-        // Create buttons for adjusting quantity
+       
         const increaseButton = createQuantityButton('Increase', () => adjustQuantity(item.id, 1));
         const decreaseButton = createQuantityButton('Decrease', () => adjustQuantity(item.id, -1));
 
@@ -75,7 +76,7 @@ function createQuantityButton(label, onClick) {
     button.textContent = label;
     button.style.borderRadius = '15px';
 
-    // Add inline styles for increase and decrease buttons
+   
     if (label === 'Increase') {
         button.style.backgroundColor = '#4CAF50';
         button.style.borderRadius = "100px";
@@ -109,7 +110,7 @@ function adjustQuantity(itemId, amount) {
     const item = cart.find(item => item.id === itemId);
 
     if (item) {
-        // Adjust the quantity and ensure it doesn't go below 1
+        
         item.quantity = Math.max(1, item.quantity + amount);
         updateCart();
     }
